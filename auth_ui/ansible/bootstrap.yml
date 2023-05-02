@@ -1,9 +1,0 @@
-- name: bootstrap
-  become: true
-  hosts: all
-  tasks:
-    - name: create user for all nodes
-      tag: always
-      user:
-        name: neo
-        groups: root
