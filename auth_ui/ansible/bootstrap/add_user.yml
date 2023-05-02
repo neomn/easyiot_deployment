@@ -1,9 +1,9 @@
 
-- hosts: all
+- hosts: web_servers
   become: true
   tasks:
 
-  - name: create ansible 
+  - name: add user ansible  
     tags: always
     user:
       name: ansible
@@ -18,7 +18,7 @@
   - name: add sudoers file for ansible
     tags: always
     copy:
-      src: files/sudoer_ansible
+      src: ../files/sudoer_ansible 
       dest: /etc/sudoers.d/ansible
       owner: root
       group: root
