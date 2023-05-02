@@ -1,0 +1,46 @@
+---
+- name: bootstrap all nodes
+  hosts: web_servers
+  become: true
+  tasks:
+
+  - name: update packages in fedora
+    tags: always
+    dnf: 
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution == "Fedora"
+  
+  - name: update packages in ubuntu
+    tags: always
+    apt: 
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+  
+  - name: add user ansible
+    tags: always
+    user:
+      name: ansible
+      group: root
+
+  - name: add ssh-key for user ansible
+    tags: always
+    authorized_key:
+      user: ansible
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK/i1NM4z27jYf90gYN3TycgBEQVnE0fCrTW0bPLxI91 ansible"
+
+  - name: add sudoers file for ansible
+    tags: always
+    copy:
+      src: ../files/sudoer_ansible
+      dest: /etc/sudoers.d/ansible
+      owner: root
+      group: root
+      mode: 0440
+
+
+
+
+
+
