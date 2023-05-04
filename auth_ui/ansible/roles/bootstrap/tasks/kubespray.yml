@@ -1,4 +1,5 @@
 - name: install kubespray prerequisits
   tags: always
-  debug:
-    msg: this a test message
+  package: 
+    name: python3, python-netaddr, ansible, python3-jinja2
+    state: present
