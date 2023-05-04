@@ -1,0 +1,2 @@
+ssh_template_file: ssh_config_fedora.js
+ssh_users: "ansible"
