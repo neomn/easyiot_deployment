@@ -1,0 +1,4 @@
+- name: install kubespray prerequisits
+  tags: always
+  debug:
+    msg: this a test message

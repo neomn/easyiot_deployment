@@ -43,3 +43,8 @@
     group: root
     mode: 0644
   notify: restart_sshd
+
+- name: install kubespray prerequisits
+  import_tasks: kubespray.yml
+
+
