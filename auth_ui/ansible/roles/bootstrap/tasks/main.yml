@@ -38,8 +38,8 @@
   tags: always
   template:
     src: "{{ ssh_template_file }}"
-    dest: /etc/ssh/ssh_config
+    dest: /etc/ssh/sshd_config
     owner: root
     group: root
-    mode: 644
+    mode: 0644
   notify: restart_sshd
