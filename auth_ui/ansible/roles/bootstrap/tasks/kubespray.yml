@@ -1,5 +1,5 @@
 - name: install kubespray prerequisits
   tags: always
-  package: 
-    name: python3, python-netaddr, ansible, python3-jinja2
+  package:
+    name: python3, python-netaddr, ansible, python3-jinja2, docker
     state: present
