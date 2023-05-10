@@ -6,3 +6,25 @@
 - name: swapoff result
   debug:
     var: swapoff.stdout
+
+# trun off swap permanently
+
+# Verify the MAC address and product_uuid are unique for every node
+
+# Check required ports 
+
+# Installing a container runtime
+
+# Installing kubeadm, kubelet and kubectl
+
+# Configuring a cgroup driver
+
+#
+
+#
+
+#
+
+#
+
+#
