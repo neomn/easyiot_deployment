@@ -41,10 +41,8 @@
     dest: /etc/ssh/sshd_config
     owner: root
     group: root
-    mode: 0644
+    mode: 644
   notify: restart_sshd
 
-- name: install kubespray prerequisits
-  import_tasks: kubespray.yml
-
-
+- name: setup kubeadm
+  import_tasks: setup_kubernetes_cluster.yml
