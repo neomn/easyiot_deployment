@@ -1,5 +1,8 @@
-- name: install kubespray prerequisits
+- name: disable swap
   tags: always
-  package:
-    name: python3, python-netaddr, ansible, python3-jinja2, docker
-    state: present
+  command: swapoff -a
+  register: swapoff
+
+- name: swapoff result
+  debug:
+    var: swapoff.stdout
