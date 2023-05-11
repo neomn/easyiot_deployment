@@ -1,3 +1,4 @@
+---
 - name: disable swap
   tags: always
   command: swapoff -a
@@ -15,7 +16,12 @@
 
 # Installing a container runtime
 
+
 # Installing kubeadm, kubelet and kubectl
+- name: install kubernetes-kubeadm, kubectl, kubelet
+  package:
+    name: kubeadm, kubectl, kubelet
+    state: latest
 
 # Configuring a cgroup driver
 
