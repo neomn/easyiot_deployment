@@ -18,6 +18,19 @@
 
 
 # Installing kubeadm, kubelet and kubectl
+- name: add kubernetes repo to dnf
+  copy:
+    content: |
+      [kubernetes]
+      name=Kubernetes
+      baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-fedora-$releasever-$basearch
+      enabled=1
+      gpgcheck=1
+      repo_gpgcheck=1
+      gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+      exclude=kube*
+    dest: /etc/yum.repos.d/kubernetes.repo
+
 - name: install kubernetes-kubeadm, kubectl, kubelet
   package:
     name: kubeadm, kubectl, kubelet
