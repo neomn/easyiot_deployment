@@ -9,12 +9,22 @@
     var: swapoff.stdout
 
 # trun off swap permanently
+- name: run swapoff command
+  become: yes
+  command: swapoff -a
 
+- name: Comment out swap entry in /etc/fstab
+  lineinfile:
+    path: /etc/fstab
+    regexp: '.*swap.*'
+    line: '#'
+  register: swap_disabled
+  changed_when: swap_disabled.changed
 
 # Verify the MAC address and product_uuid are unique for every node
 
 
-# Check required ports  
+# open required ports  
 - name: Install UFW
   dnf:
     name: ufw
@@ -33,7 +43,10 @@
     port: 6443
     proto: tcp
 
-# Installing a container runtime
+# Installing a container runtime interface (CRI)
+
+
+
 
 
 # Installing kubeadm, kubelet and kubectl
@@ -46,23 +59,18 @@
       baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
       enabled=1
       gpgcheck=1
-      gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+      gpgkey==https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
       exclude=kubelet kubeadm kubectl
     dest: /etc/yum.repos.d/kubernetes.repo
-      #- name: Set SELinux in permissive mode (effectively disabling it) 
-      #command: setenforce 0 && sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
-    #- name: update dnf cahce
-    #command: dnf makecache
+
+- name: add kubernetes dnf repo
+  become: yes
+  command: dnf config-manager --add-repo=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
 
 - name: install kubeadm, kubelet, kubectl on fedora
   dnf:
-    name: kubeadm, kubelet, kubectl
+    name: kubectl
   when: ansible_distribution=="Fedora"
-    #- name: install kubernetes-kubeadm, kubectl, kubelet
-    #  become: true
-    #  package:
-    #name: kubeadm, kubectl, kubelet
-    #state: latest
 
 # Configuring a cgroup driver
 
