@@ -1,13 +1,4 @@
 ---
-- name: disable swap
-  tags: always
-  command: swapoff -a
-  register: swapoff
-
-- name: swapoff result
-  debug:
-    var: swapoff.stdout
-
 # trun off swap permanently
 - name: run swapoff command
   become: yes
