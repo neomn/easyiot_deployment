@@ -3,6 +3,7 @@
 - name: run swapoff command
   become: yes
   command: swapoff -a
+  changed_when: false
 
 - name: Comment out swap entry in /etc/fstab
   lineinfile:
