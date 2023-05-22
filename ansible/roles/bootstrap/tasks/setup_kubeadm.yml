@@ -13,7 +13,14 @@
   register: swap_disabled
   changed_when: swap_disabled.changed
 
+
+
+
+
+
 # Verify the MAC address and product_uuid are unique for every node
+
+
 
 
 
@@ -36,6 +43,8 @@
     port: 6443
     proto: tcp
 
+
+
 # Installing a container runtime interface (CRI)
 - name: install cri-o prerequisits
   dnf:
@@ -51,6 +60,19 @@
     gpgcheck: no
     state: present
   when: ansible_distribution = "Fedora"
+
+- name: install cri-o
+  dnf: 
+    name: cri-o
+    state: present
+
+- name: start cri-o
+  systemd:
+    name: cri-o
+    state: started
+    enabled: yes
+
+
 
 # Installing kubeadm, kubelet and kubectl
 
