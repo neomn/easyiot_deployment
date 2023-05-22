@@ -38,11 +38,16 @@
 
 
 
-
 # Installing a container runtime interface (CRI)
+- name: install cri-o prerequisits
+  dnf:
+    name: libseccomp glibc-langpack-en
+    state: present
+  when: ansible_distribution = "Fedora"
 
-
-
+- name: adding cri-o repo to dnf
+  dnf_repository
+  when: ansible_distribution = "Fedora"
 
 
 # Installing kubeadm, kubelet and kubectl
