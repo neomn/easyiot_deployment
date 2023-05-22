@@ -61,7 +61,11 @@
   when: ansible_distribution == "Fedora"
 
 - name: disable SELinux
-  command: sudo setenforce Permissive && sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+  command: sudo setenforce 0 
+  when: ansible_distribution == "Fedora"
+    
+- name: disable SELinux- step two
+  command: sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
   when: ansible_distribution == "Fedora"
      
     #- name: install kubeadm
