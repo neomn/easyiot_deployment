@@ -61,17 +61,17 @@
   when: ansible_distribution == "Fedora"
 
 - name: disable SELinux
-  command: sudo setenforce 0 && sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+  command: sudo setenforce Permissive && sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
   when: ansible_distribution == "Fedora"
+     
+    #- name: install kubeadm
+    #  command: sudo dnf install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+    #  when: ansible_distribution == "Fedora"
 
-- name: install kubeadm
-  command: sudo dnf install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
-  when: ansible_distribution == "Fedora"
-
-- name: enable kubelet service
-  systemd:
-    name: kubelet
-    state: started
-    enabled: yes
+    #- name: enable kubelet service
+    #  systemd:
+    #    name: kubelet
+    #    state: started
+    #  enabled: yes
 
 # Configuring a cgroup driver
