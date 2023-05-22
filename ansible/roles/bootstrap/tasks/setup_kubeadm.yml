@@ -36,8 +36,6 @@
     port: 6443
     proto: tcp
 
-
-
 # Installing a container runtime interface (CRI)
 - name: install cri-o prerequisits
   dnf:
@@ -46,9 +44,13 @@
   when: ansible_distribution = "Fedora"
 
 - name: adding cri-o repo to dnf
-  dnf_repository
+  dnf_repository:
+    name: cri-o
+    baseurl: https://cbs.centos.org/repos/paas7-crio-411-candidate/x86_64/os/
+    description: cri-o repo
+    gpgcheck: no
+    state: present
   when: ansible_distribution = "Fedora"
-
 
 # Installing kubeadm, kubelet and kubectl
 
