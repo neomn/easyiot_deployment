@@ -48,29 +48,26 @@
 # Installing a container runtime interface (CRI)
 - name: install cri-o prerequisits
   dnf:
-    name: libseccomp glibc-langpack-en
+    name: libseccomp, glibc-langpack-en
     state: present
-  when: ansible_distribution = "Fedora"
+  when: ansible_distribution == "Fedora"
 
 - name: adding cri-o repo to dnf
-  dnf_repository:
-    name: cri-o
-    baseurl: https://cbs.centos.org/repos/paas7-crio-411-candidate/x86_64/os/
-    description: cri-o repo
-    gpgcheck: no
-    state: present
-  when: ansible_distribution = "Fedora"
+  command: dnf config-manager --add-repo=https://cbs.centos.org/repos/paas7-crio-411-candidate/x86_64/os/
+  when: ansible_distribution == "Fedora"
 
 - name: install cri-o
   dnf: 
     name: cri-o
     state: present
+  when: ansible_distribution == "Fedora"
 
 - name: start cri-o
   systemd:
     name: cri-o
     state: started
     enabled: yes
+  when: ansible_distribution == "Fedora"
 
 
 
