@@ -62,13 +62,6 @@
     state: present
   when: ansible_distribution == "Fedora"
 
-- name: start cri-o
-  systemd:
-    name: cri-o
-    state: started
-    enabled: yes
-  when: ansible_distribution == "Fedora"
-
 
 
 # Installing kubeadm, kubelet and kubectl
