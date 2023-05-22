@@ -65,8 +65,9 @@
 
 
 # Installing kubeadm, kubelet and kubectl
-
-
+- name: adding kubernetes repo
+  command: dnf config-manager --add-repo=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+  when: ansible_distribution == "Fedora"
 
 
 
