@@ -13,11 +13,6 @@
   register: swap_disabled
   changed_when: swap_disabled.changed
 
-
-
-
-
-
 # Verify the MAC address and product_uuid are unique for every node
 
 
@@ -43,8 +38,6 @@
     port: 6443
     proto: tcp
 
-
-
 # Installing a container runtime interface (CRI)
 - name: install cri-o prerequisits
   dnf:
@@ -57,18 +50,28 @@
   when: ansible_distribution == "Fedora"
 
 - name: install cri-o
-  dnf: 
+  dnf:
     name: cri-o
     state: present
   when: ansible_distribution == "Fedora"
-
-
 
 # Installing kubeadm, kubelet and kubectl
 - name: adding kubernetes repo
   command: dnf config-manager --add-repo=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
   when: ansible_distribution == "Fedora"
 
+- name: disable SELinux
+  command: sudo setenforce 0 && sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+  when: ansible_distribution == "Fedora"
 
+- name: install kubeadm
+  command: sudo dnf install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+  when: ansible_distribution == "Fedora"
+
+- name: enable kubelet service
+  systemd:
+    name: kubelet
+    state: started
+    enabled: yes
 
 # Configuring a cgroup driver
