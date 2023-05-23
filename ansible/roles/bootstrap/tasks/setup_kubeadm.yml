@@ -99,13 +99,6 @@
   when: ansible_distribution == "Fedora"
 
 
-    #- name: enable kubelet service
-    #  systemd:
-    #    name: kubelet
-    #    state: started
-    #  enabled: yes
-
-
 
 
 # Configuring a cgroup driver
