@@ -13,6 +13,9 @@
   register: swap_disabled
   changed_when: swap_disabled.changed
 
+
+
+
 # Verify the MAC address and product_uuid are unique for every node
 
 
@@ -30,7 +33,7 @@
     name: ufw
     state: started
     enabled: yes
-
+ 
 - name: open port 6443 on target machine
   become: yes
   ufw:
@@ -98,6 +101,10 @@
     name : kubeadm
   when: ansible_distribution == "Fedora"
 
+
+
+- name: test command
+  command: curl icanhazip.com
 
 
 
