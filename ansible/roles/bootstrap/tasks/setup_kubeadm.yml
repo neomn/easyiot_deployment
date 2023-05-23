@@ -83,10 +83,21 @@
     update_cache: yes
   when: ansible_distribution == "Fedora"
 
-- name: install kubeadm
+- name: install kubectl
   dnf:
     name : kubectl
   when: ansible_distribution == "Fedora"
+
+- name: install kubelet
+  dnf:
+    name : kubelet
+  when: ansible_distribution == "Fedora"
+    
+- name: install kubeadm
+  dnf:
+    name : kubeadm
+  when: ansible_distribution == "Fedora"
+
 
     #- name: enable kubelet service
     #  systemd:
