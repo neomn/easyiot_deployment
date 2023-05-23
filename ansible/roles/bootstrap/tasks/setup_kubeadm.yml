@@ -38,6 +38,8 @@
     port: 6443
     proto: tcp
 
+
+       
 # Installing a container runtime interface (CRI)
 - name: install cri-o prerequisits
   dnf:
@@ -55,7 +57,15 @@
     state: present
   when: ansible_distribution == "Fedora"
 
+
+
+
 # Installing kubeadm, kubelet and kubectl
+- name: add gpg key for kubernetes repo
+  dnf_key:
+    url: "https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch"
+    state: present
+
 - name: adding kubernetes repo
   command: dnf config-manager --add-repo=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
   when: ansible_distribution == "Fedora"
@@ -68,14 +78,18 @@
   command: sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
   when: ansible_distribution == "Fedora"
      
-- name: install kubeadm
-  command: sudo dnf install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
-  when: ansible_distribution == "Fedora"
+
+    #- name: install kubeadm
+    #command: sudo dnf install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+    # when: ansible_distribution == "Fedora"
 
     #- name: enable kubelet service
     #  systemd:
     #    name: kubelet
     #    state: started
     #  enabled: yes
+
+
+
 
 # Configuring a cgroup driver
