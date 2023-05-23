@@ -85,7 +85,7 @@
 
 - name: install kubeadm
   dnf:
-    name : kubelet, kubeadm, kubectl 
+    name : kubectl
   when: ansible_distribution == "Fedora"
 
     #- name: enable kubelet service
