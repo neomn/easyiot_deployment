@@ -61,15 +61,6 @@
 
 
 # Installing kubeadm, kubelet and kubectl
-- name: add gpg key for kubernetes repo
-  dnf_key:
-    url: "https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch"
-    state: present
-
-- name: adding kubernetes repo
-  command: dnf config-manager --add-repo=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
-  when: ansible_distribution == "Fedora"
-
 - name: disable SELinux
   command: sudo setenforce 0 
   when: ansible_distribution == "Fedora"
@@ -77,6 +68,16 @@
 - name: disable SELinux- step two
   command: sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
   when: ansible_distribution == "Fedora"
+
+- name: add gpg key for kubernetes repo
+  command: sudo rpm --import https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+  when: ansible_distribution == "Fedora"
+  
+
+- name: adding kubernetes repo
+  command: dnf config-manager --add-repo=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+  when: ansible_distribution == "Fedora"
+
      
 
     #- name: install kubeadm
