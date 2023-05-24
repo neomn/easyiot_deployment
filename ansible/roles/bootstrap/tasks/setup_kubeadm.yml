@@ -4,12 +4,16 @@
 
 - name: disable swap - step one
   become: yes
-  command: sed -i '/swap/d' /etc/fstab
+  systemd: 
+    name: swap.target
+    state: stopped
+    masked: yes
   changed_when: false
 
 - name: disable swap - step two
   become: yes
-  command: swapoff -a
+  shell:
+    cmd: swapoff -a
   changed_when: false
 
 
@@ -104,8 +108,13 @@
 
 
 
-# start kubernetes cluster
 
+
+# start kubernetes cluster
+- name: start kubelet service
+  become: yes
+  command: systemctl start kubelet.service
+    
 - name: init kubeadm
   become: yes
   command: kubeadm init
