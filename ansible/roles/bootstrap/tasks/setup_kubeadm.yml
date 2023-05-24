@@ -39,8 +39,44 @@
   become: yes
   ufw:
     rule: allow
-    port: [6443, 32750, 10250, 4443, 443, 8080]
+    port: 6443
     proto: tcp
+
+- name: open port 32750 on target machine
+  become: yes
+  ufw:
+    rule: allow
+    port: 32750
+    proto: tcp     
+
+- name: open port 10250 on target machine
+  become: yes
+  ufw:
+    rule: allow
+    port: 10250
+    proto: tcp
+      
+- name: open port 4443 on target machine
+  become: yes
+  ufw:
+    rule: allow
+    port: 4443
+    proto: tcp
+
+- name: open port 443 on target machine
+  become: yes
+  ufw:
+    rule: allow
+    port: 443
+    proto: tcp
+
+- name: open port 8080 on target machine
+  become: yes
+  ufw:
+    rule: allow
+    port: 8080
+    proto: tcp
+
 
 
 
