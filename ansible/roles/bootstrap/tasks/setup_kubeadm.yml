@@ -71,7 +71,11 @@
   dnf:
     name: dnf-utils,lvm2-devel,device-mapper-devel,docker-ce
 
-
+- name: start docker service
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
 
 
 
