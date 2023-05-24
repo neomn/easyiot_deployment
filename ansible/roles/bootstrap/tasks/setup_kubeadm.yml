@@ -1,24 +1,20 @@
 ---
 
 # trun off swap permanently
-- name: run swapoff command
+
+- name: disable swap - step one
+  become: yes
+  command: sed -i '/swap/d' /etc/fstab
+  changed_when: false
+
+- name: disable swap - step two
   become: yes
   command: swapoff -a
   changed_when: false
 
-- name: Comment out swap entry in /etc/fstab
-  lineinfile:
-    path: /etc/fstab
-    regexp: '.*swap.*'
-    line: '#'
-  register: swap_disabled
-  changed_when: swap_disabled.changed
-
-
 
     
 # Verify the MAC address and product_uuid are unique for every node
-
 
 
 
@@ -105,6 +101,17 @@
 
     
 # Configuring a cgroup driver
+
+
+
+# start kubernetes cluster
+
+- name: init kubeadm
+  become: yes
+  command: kubeadm init
+
+
+
 
 
 
