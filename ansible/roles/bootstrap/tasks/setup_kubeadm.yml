@@ -1,4 +1,5 @@
 ---
+
 # trun off swap permanently
 - name: run swapoff command
   become: yes
@@ -15,7 +16,7 @@
 
 
 
-
+    
 # Verify the MAC address and product_uuid are unique for every node
 
 
@@ -33,7 +34,7 @@
     name: ufw
     state: started
     enabled: yes
- 
+
 - name: open port 6443 on target machine
   become: yes
   ufw:
@@ -42,7 +43,8 @@
     proto: tcp
 
 
-       
+
+      
 # Installing a container runtime interface (CRI)
 - name: install cri-o prerequisits
   dnf:
@@ -61,13 +63,12 @@
   when: ansible_distribution == "Fedora"
 
 
-
-
+    
 # Installing kubeadm, kubelet and kubectl
 - name: disable SELinux
-  command: sudo setenforce 0 
+  command: sudo setenforce 0
   when: ansible_distribution == "Fedora"
-    
+
 - name: disable SELinux- step two
   command: sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
   when: ansible_distribution == "Fedora"
@@ -75,11 +76,11 @@
 - name: add gpg key for kubernetes repo
   command: sudo rpm --import https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
   when: ansible_distribution == "Fedora"
-  
+
 - name: adding kubernetes repo
   command: dnf config-manager --add-repo https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
   when: ansible_distribution == "Fedora"
-    
+
 - name: update packages in fedora
   tags: always
   dnf:
@@ -88,24 +89,23 @@
 
 - name: install kubectl
   dnf:
-    name : kubectl
+    name: kubectl
   when: ansible_distribution == "Fedora"
 
 - name: install kubelet
   dnf:
-    name : kubelet
+    name: kubelet
   when: ansible_distribution == "Fedora"
-    
+
 - name: install kubeadm
   dnf:
-    name : kubeadm
+    name: kubeadm
   when: ansible_distribution == "Fedora"
 
 
-
-- name: test command
-  command: curl icanhazip.com
-
-
-
+    
 # Configuring a cgroup driver
+
+
+
+    
