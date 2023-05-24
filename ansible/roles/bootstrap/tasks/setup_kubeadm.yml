@@ -112,8 +112,10 @@
 
 # start kubernetes cluster
 - name: start kubelet service
-  become: yes
-  command: systemctl start kubelet.service
+  systemd: 
+    name: kubelet.service
+    state: started
+    enabled: yes
     
 - name: init kubeadm
   become: yes
