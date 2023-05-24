@@ -44,6 +44,9 @@
     sudo ufw allow 8080/tcp
 
 
+
+
+
 # Installing a container runtime interface (CRI)
 - name:  Forwarding IPv4 and letting iptables see bridged traffic 
   shell: |
@@ -62,29 +65,7 @@
   command: sudo sysctl --system
 
 
-#- name:  Forwarding IPv4 and letting iptables see bridged traffic 
-#  become: yes
-#  command: "{{ item }}"
-#  with_items:
-#    - cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf\overlay\br_netfilter\EOF
-#    - sudo modprobe overlay
-#    - sudo modprobe br_netfilter
 
-#- name: install cri-o prerequisits
-#  dnf:
-#    name: libseccomp, glibc-langpack-en
-#    state: present
-#  when: ansible_distribution == "Fedora"
-
-#- name: adding cri-o repo to dnf
-#  command: dnf config-manager --add-repo=https://cbs.centos.org/repos/paas7-crio-411-candidate/x86_64/os/
-#  when: ansible_distribution == "Fedora"
-
-#- name: install cri-o
-#  dnf:
-#    name: cri-o
-#   state: present
-#  when: ansible_distribution == "Fedora"
 
 
     
