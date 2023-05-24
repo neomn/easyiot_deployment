@@ -1,7 +1,6 @@
 ---
 
 # trun off swap permanently
-
 - name: disable swap - step one
   become: yes
   systemd: 
@@ -34,50 +33,15 @@
     name: ufw
     state: started
     enabled: yes
-
-- name: open port 6443 on target machine
-  become: yes
-  ufw:
-    rule: allow
-    port: 6443
-    proto: tcp
-
-- name: open port 32750 on target machine
-  become: yes
-  ufw:
-    rule: allow
-    port: 32750
-    proto: tcp     
-
-- name: open port 10250 on target machine
-  become: yes
-  ufw:
-    rule: allow
-    port: 10250
-    proto: tcp
       
-- name: open port 4443 on target machine
-  become: yes
-  ufw:
-    rule: allow
-    port: 4443
-    proto: tcp
-
-- name: open port 443 on target machine
-  become: yes
-  ufw:
-    rule: allow
-    port: 443
-    proto: tcp
-
-- name: open port 8080 on target machine
-  become: yes
-  ufw:
-    rule: allow
-    port: 8080
-    proto: tcp
-
-
+- name: open required ports
+  shell: |
+    sudo ufw allow 6443/tcp
+    sudo ufw allow 32750/tcp
+    sudo ufw allow 10250/tcp
+    sudo ufw allow 4443/tcp
+    sudo ufw allow 443/tcp
+    sudo ufw allow 8080/tcp
 
 
 # Installing a container runtime interface (CRI)
@@ -96,7 +60,6 @@
 
 - name: Apply sysctl params without reboot
   command: sudo sysctl --system
-
 
 
 #- name:  Forwarding IPv4 and letting iptables see bridged traffic 
