@@ -39,12 +39,11 @@
   become: yes
   ufw:
     rule: allow
-    port: 6443
+    port: [6443, 32750, 10250, 4443, 443, 8080]
     proto: tcp
 
 
 
-      
 # Installing a container runtime interface (CRI)
 - name: install cri-o prerequisits
   dnf:
