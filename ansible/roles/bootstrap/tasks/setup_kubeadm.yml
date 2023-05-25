@@ -107,7 +107,7 @@
 
 
 
-# Installing kubeadm, kubelet and kubectl
+# Installing kubeadm, kubelet kubectl and kubernetes-cni
 - name: disable SELinux
   command: sudo setenforce 0
   when: ansible_distribution == "Fedora"
@@ -130,20 +130,12 @@
     update_cache: yes
   when: ansible_distribution == "Fedora"
 
-- name: install kubectl
+- name: install kubectl kubelet kubeadm kubernetes-cni
   dnf:
-    name: kubectl
+    name: kubectl,kubelet,kubeadm,kubernetes-cni
+    state: present
   when: ansible_distribution == "Fedora"
 
-- name: install kubelet
-  dnf:
-    name: kubelet
-  when: ansible_distribution == "Fedora"
-
-- name: install kubeadm
-  dnf:
-    name: kubeadm
-  when: ansible_distribution == "Fedora"
 
 
     
