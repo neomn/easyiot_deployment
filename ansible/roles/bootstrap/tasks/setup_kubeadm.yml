@@ -77,18 +77,15 @@
     state: started
     enabled: yes
 
-- name: install go
+- name: install go and git
   dnf:
-    name: go
+    name: go,git
     state: present
 
 - name: install cri-dockerd
   become: yes
   shell: |
-    wget https://storage.googleapis.com/golang/getgo/installer_linux
-    chmod +x ./installer_linux
-    ./installer_linux
-    source ~/.bash_profile
+    git clone https://github.com/Mirantis/cri-dockerd.git
     cd cri-dockerd
     mkdir bin
     go build -o bin/cri-dockerd
