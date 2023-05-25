@@ -97,6 +97,14 @@
     systemctl enable cri-docker.service
     systemctl enable --now cri-docker.socket
 
+- name: enableing cri-docker service
+  systemd:
+    name: cri-docker
+    state: started
+    enabled: yes
+
+
+
 
 
 # Installing kubeadm, kubelet and kubectl
