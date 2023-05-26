@@ -154,7 +154,8 @@
     
 - name: init kubeadm
   become: yes
-  command: kubeadm init
+  shell: |
+    kubeadm --cri-socket unix:////run/cri-dockerd init
 
 
 
