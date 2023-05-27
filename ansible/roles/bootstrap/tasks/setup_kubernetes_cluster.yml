@@ -15,7 +15,6 @@
 
 
 
-    
 # update dnf
 - name: update packages and repository index (fedora)
   dnf:
@@ -24,13 +23,17 @@
   when: ansible_distribution == "Fedora"
 
 
-
-
     
 # install all required packages
 - name: installl required packages
-  dnf:
-    name: git,ufw,
+  package:
+    name: git,curl,docker-ce,kubectl,kubelet,kubeadm,kubernetes-cni
+
+
+- name: init kubeadm
+  shell: |
+    sudo kubeadm init
+
 
 
 # open ports
