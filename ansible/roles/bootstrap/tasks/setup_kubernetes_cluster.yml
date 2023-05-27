@@ -1,6 +1,10 @@
 ---
 
 # add required repos
+- name: add docker repo for fedora
+  command: dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+  when: ansible_distribution == "Fedora"
+  
 - name: add gpg key for kubernetes repo for in fedora
   command: sudo rpm --import https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
   when: ansible_distribution == "Fedora"
@@ -9,6 +13,9 @@
   command: dnf config-manager --add-repo https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
   when: ansible_distribution == "Fedora"
 
+
+
+    
 # update dnf
 
 
