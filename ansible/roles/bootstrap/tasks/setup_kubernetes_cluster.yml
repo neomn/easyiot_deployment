@@ -17,9 +17,20 @@
 
     
 # update dnf
+- name: update packages and repository index (fedora)
+  dnf:
+    update_only: yes
+    update_cache: yes
+  when: ansible_distribution == "Fedora"
 
 
+
+
+    
 # install all required packages
+- name: installl required packages
+  dnf:
+    name: git,ufw,
 
 
 # open ports
