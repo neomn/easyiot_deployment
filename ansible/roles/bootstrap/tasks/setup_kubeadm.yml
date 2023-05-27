@@ -37,11 +37,11 @@
 - name: open required ports
   shell: |
     sudo ufw allow 6443/tcp
-    sudo ufw allow 32750/tcp
-    sudo ufw allow 10250/tcp
-    sudo ufw allow 4443/tcp
-    sudo ufw allow 443/tcp
-    sudo ufw allow 8080/tcp
+    #sudo ufw allow 32750/tcp
+    #sudo ufw allow 10250/tcp
+    #sudo ufw allow 4443/tcp
+    #sudo ufw allow 443/tcp
+    #sudo ufw allow 8080/tcp
 
 
 
@@ -155,7 +155,7 @@
 - name: init kubeadm
   become: yes
   shell: |
-    kubeadm --cri-socket unix:////run/cri-dockerd init
+    kubeadm --cri-socket unix:////run/cri-dockerd.socket init
 
 
 
