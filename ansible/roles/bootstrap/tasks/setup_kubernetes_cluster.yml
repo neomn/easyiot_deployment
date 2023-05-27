@@ -1,7 +1,13 @@
 ---
 
 # add required repos
+- name: add gpg key for kubernetes repo for in fedora
+  command: sudo rpm --import https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+  when: ansible_distribution == "Fedora"
 
+- name: adding kubernetes repo in fodora
+  command: dnf config-manager --add-repo https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+  when: ansible_distribution == "Fedora"
 
 # update dnf
 
@@ -19,6 +25,3 @@
 
 
 # check if cluster is up and running
-
-
- 
