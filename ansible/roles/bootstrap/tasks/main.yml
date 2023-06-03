@@ -45,4 +45,4 @@
   notify: restart_sshd
 
 - name: setup kubeadm
-  import_tasks: setup_kubeadm.yml
+  import_tasks: setup_kubernetes_cluster.yml
