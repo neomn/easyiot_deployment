@@ -14,4 +14,29 @@
 #
 # which means easy iot services should be present inside Services directory
 
+networks:
+    easyiot
 
+services:
+    gateway:
+
+        networks:
+            easyiot
+
+    home:
+
+        networks:
+            easyiot
+
+    auth_ui:
+
+        networks:
+            easyiot
+
+    auth_api:
+
+        networks:
+            easyiot
+
+
+    
