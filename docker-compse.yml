@@ -2,9 +2,15 @@
 # run docker-compose up command 
 # note that directory structure should be like below
 #
-# -easyiot
-#   -Services
-#   -easyiot_deployment
+# - easyiot
+#   - Services
+#     - easyiot_gateway_service
+#     - easyiot_home_service
+#     - easyiot_auth_ui_service
+#     - easyiot_auth_api_service
+#     
+#   - easyiot_deployment
+#     - docker-compose.yml // this is current docker compose file
 #
 # which means easy iot services should be present inside Services directory
 
