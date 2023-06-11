@@ -9,9 +9,9 @@ services:
         restart:            unless-stopped
         tty:                true
         ports:
-                            - 80:80
+            - 80:80
         networks:
-                            easyiot
+            easyiot
 
     home:
         image:              easyiot_home_image
@@ -19,9 +19,9 @@ services:
         restart:            unless-stopped
         tty:                true
         depends_on:
-                            - gateway
+            - gateway
         networks:
-                            easyiot
+            easyiot
 
     auth_ui:
         image:              easyiot_auth_ui_image
@@ -29,17 +29,17 @@ services:
         restart:            unless-stopped
         tty:                true
         depends_on:
-                            - gateway
+            - gateway
         networks:
-                            easyiot
+            easyiot
 
     auth_api:
         image:              easyiot_auth_api_image
-        container_name:     easyiot_auth_api_container
+        container_name :    easyiot_auth_api_container
         restart:            unless-stopped
         tty:                true
         depends_on:
-                            - gateway
+            - gateway
         networks:
-                            easyiot
+            easyiot
     
