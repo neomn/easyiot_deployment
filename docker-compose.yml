@@ -1,6 +1,6 @@
 
 networks:
-    easyiot
+    easyiot:
 
 services:
     gateway:
@@ -11,7 +11,7 @@ services:
         ports:
             - 80:80
         networks:
-            easyiot
+            - easyiot
 
     home:
         image:              easyiot_home_image
@@ -21,7 +21,7 @@ services:
         depends_on:
             - gateway
         networks:
-            easyiot
+            - easyiot
 
     auth_ui:
         image:              easyiot_auth_ui_image
@@ -31,7 +31,7 @@ services:
         depends_on:
             - gateway
         networks:
-            easyiot
+            - easyiot
 
     auth_api:
         image:              easyiot_auth_api_image
@@ -41,5 +41,15 @@ services:
         depends_on:
             - gateway
         networks:
-            easyiot
+            - easyiot
+
+    
+    sensor:
+        image:              easyiot_sensor_image
+        container_name:     easyiot_sensor_container
+        restart:            unless-stopped
+        tty:                true
+        depends_on:
+            - gateway
+    
     
