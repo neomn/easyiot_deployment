@@ -51,5 +51,7 @@ services:
         tty:                true
         depends_on:
             - gateway
+        networks:
+            - easyiot
     
     
