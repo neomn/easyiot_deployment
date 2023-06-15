@@ -1,31 +1,33 @@
 
 networks:
-    easyiot:
+  easyiot:
 
 services:
-    gateway:
-        image:              easyiot_gateway_image
-        container_name :    easyiot_gateway_container
-        restart:            unless-stopped
-        tty:                true
-        ports:
-            - 80:80
-        networks:
-            - easyiot
+  gateway:
+    image:              easyiot_gateway_image
+    container_name :    easyiot_gateway_container
+    restart:            unless-stopped
+    tty:                true
+    ports:
+      - 80:80
+    networks:
+      - easyiot
 
-    home:
-        image:              easyiot_home_image
-        container_name :    easyiot_home_container
-        restart:            unless-stopped
-        tty:                true
-        depends_on:
-            - gateway
-        volumes:
-            - type:bind
-              src:"$(pwd)/../Services/easyiot_home_service/src"
-              target: /app
-        networks:
-            - easyiot
+
+  home:
+    image: easyiot_home_image
+    container_name: easyiot_home_container
+    restart: unless-stopped
+    tty: true
+    depends_on:
+      - gateway
+    volumes:
+      - type: bind
+        source: "$(pwd)/../Services/easyiot_home_service/src"
+        target: /app
+    networks:
+      - easyiot
+
 
 #    auth_ui:
 #        image:              easyiot_auth_ui_image
