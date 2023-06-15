@@ -10,6 +10,10 @@ services:
         tty:                true
         ports:
             - 80:80
+        volumes:
+            - type:bind
+              src:"$(pwd)/../services/easyiot_home_service/src"
+              target: /app
         networks:
             - easyiot
 
