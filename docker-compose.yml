@@ -23,35 +23,33 @@ services:
         networks:
             - easyiot
 
-    auth_ui:
-        image:              easyiot_auth_ui_image
-        container_name :    easyiot_auth_ui_container
-        restart:            unless-stopped
-        tty:                true
-        depends_on:
-            - gateway
-        networks:
-            - easyiot
+#    auth_ui:
+#        image:              easyiot_auth_ui_image
+#        container_name :    easyiot_auth_ui_container
+#        restart:            unless-stopped
+#        tty:                true
+#        depends_on:
+#            - gateway
+#        networks:
+#            - easyiot
 
-    auth_api:
-        image:              easyiot_auth_api_image
-        container_name :    easyiot_auth_api_container
-        restart:            unless-stopped
-        tty:                true
-        depends_on:
-            - gateway
-        networks:
-            - easyiot
+#   auth_api:
+#       image:              easyiot_auth_api_image
+#       container_name :    easyiot_auth_api_container
+#       restart:            unless-stopped
+#       tty:                true
+#       depends_on:
+#           - gateway
+#       networks:
+#            - easyiot
 
-    
-    sensor:
-        image:              easyiot_sensor_image
-        container_name:     easyiot_sensor_container
-        restart:            unless-stopped
-        tty:                true
-        depends_on:
-            - gateway
-        networks:
-            - easyiot
+#   
+#    sensor:
+#        image:              easyiot_sensor_image
+#        container_name:     easyiot_sensor_container
+#        restart:            unless-stopped
+#        tty:                true
+#        depends_on:
+#            - gateway
     
     
