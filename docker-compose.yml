@@ -23,7 +23,7 @@ services:
       - gateway
     volumes:
       - type: bind
-        source: "$(pwd)/../Services/easyiot_home_service/src"
+        source: "../Services/easyiot_home_service/src"
         target: /app
     networks:
       - easyiot
