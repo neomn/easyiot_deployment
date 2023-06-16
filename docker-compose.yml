@@ -1,6 +1,7 @@
 
 networks:
   easyiot:
+    internal: true
 
 services:
   gateway:
