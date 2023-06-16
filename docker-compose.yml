@@ -1,8 +1,10 @@
 
 networks:
   easyiot:
-    internal: true
+    external: 
+      name: easyiot
 
+        
 services:
   gateway:
     image:              easyiot_gateway_image
