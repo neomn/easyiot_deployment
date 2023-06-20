@@ -1,8 +1,6 @@
 
 networks:
   easyiot:
-    external: 
-      name: easyiot
 
         
 services:
