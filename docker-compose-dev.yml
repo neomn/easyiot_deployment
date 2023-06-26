@@ -16,7 +16,9 @@ services:
       - easyiot
 
   home:
-    image: easyiot_home_image
+    build:
+      context: ../Services/easyiot_home_service
+      dockerfile: Dockerfile
     container_name: homec
     restart: unless-stopped
     tty: true
