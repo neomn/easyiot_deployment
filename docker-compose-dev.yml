@@ -1,23 +1,21 @@
-
 networks:
   easyiot:
 
-        
+
 services:
   gateway:
-    image:              easyiot_gateway_image
-    container_name :    easyiot_gateway_container
-    restart:            unless-stopped
-    tty:                true
+    image: easyiot_gateway_image
+    container_name: gatec
+    restart: unless-stopped
+    tty: true
     ports:
       - 80:80
     networks:
       - easyiot
 
-
   home:
     image: easyiot_home_image
-    container_name: easyiot_home_container
+    container_name: homec
     restart: unless-stopped
     tty: true
     depends_on:
@@ -28,7 +26,6 @@ services:
         target: /app
     networks:
       - easyiot
-
 
 #    auth_ui:
 #        image:              easyiot_auth_ui_image
@@ -58,5 +55,3 @@ services:
 #        tty:                true
 #        depends_on:
 #            - gateway
-    
-    
