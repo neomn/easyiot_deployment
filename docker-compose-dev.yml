@@ -48,7 +48,7 @@ services:
         - gateway
       volumes:
         - type: bind
-          source: "../Services/easyiot_auth_ui_service/src"
+          source: "../services/easyiot_auth_ui_service/src"
           target: /app 
       networks:
         - easyiot
@@ -64,6 +64,10 @@ services:
       tty: true
       depends_on:
         - gateway
+      volumes:
+        - type: bind
+          source: "../services/easyiot_auth_api_service/src"
+          target: /app      networks:
       networks:
         - easyiot
 
