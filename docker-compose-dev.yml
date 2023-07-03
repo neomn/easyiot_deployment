@@ -47,6 +47,7 @@ services:
     auth_api:
       image: easyiot_auth_api_image
       container_name: easyiot_auth_api_container
+      hostname: auth_api
       restart: unless-stopped
       tty: true
       depends_on:
