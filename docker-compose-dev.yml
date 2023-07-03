@@ -7,6 +7,7 @@ services:
     build:
       context: ../Services/easyiot_gateway_service
       dockerfile: Dockerfile
+    image: gateway
     container_name: gatec
     hostname: gate
     restart: unless-stopped
@@ -20,6 +21,7 @@ services:
     build:
       context: ../Services/easyiot_home_service
       dockerfile: Dockerfile
+    image: home
     container_name: homec
     hostname: home
     restart: unless-stopped
@@ -34,8 +36,11 @@ services:
       - easyiot
 
     auth_ui:
+      build:
+        context: ../Services/easyiot_auth_ui_service
+        dockerfile: Dockerfile-dev
       image: easyiot_auth_ui_image
-      container_name: easyiot_auth_ui_container
+      container_name: auth_uic
       hostname: auth_ui
       restart: unless-stopped
       tty: true
@@ -45,6 +50,9 @@ services:
         - easyiot
 
     auth_api:
+      build:
+        context: ../Services/easyiot_auth_api_service
+        dockerfile: Dockerfile-dev
       image: easyiot_auth_api_image
       container_name: easyiot_auth_api_container
       hostname: auth_api
