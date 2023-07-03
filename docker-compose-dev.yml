@@ -44,15 +44,15 @@ services:
       networks:
         - easyiot
 
-#   auth_api:
-#       image:              easyiot_auth_api_image
-#       container_name :    easyiot_auth_api_container
-#       restart:            unless-stopped
-#       tty:                true
-#       depends_on:
-#           - gateway
-#       networks:
-#            - easyiot
+    auth_api:
+      image: easyiot_auth_api_image
+      container_name: easyiot_auth_api_container
+      restart: unless-stopped
+      tty: true
+      depends_on:
+        - gateway
+      networks:
+        - easyiot
 
 #   
 #    sensor:
