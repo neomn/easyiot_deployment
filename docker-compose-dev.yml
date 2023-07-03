@@ -38,7 +38,7 @@ services:
     auth_ui:
       build:
         context: ../Services/easyiot_auth_ui_service
-        dockerfile: Dockerfile-dev
+        dockerfile: Dockerfile
       image: easyiot_auth_ui_image
       container_name: auth_uic
       hostname: auth_ui
@@ -56,7 +56,7 @@ services:
     auth_api:
       build:
         context: ../Services/easyiot_auth_api_service
-        dockerfile: Dockerfile-dev
+        dockerfile: Dockerfile
       image: easyiot_auth_api_image
       container_name: auth_apic
       hostname: auth_api
