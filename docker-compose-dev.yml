@@ -15,6 +15,9 @@ services:
     tty: true
     ports:
       - 80:80
+    depends_on: 
+      - home
+      - auth_ui
     networks:
       - easyiot
 
@@ -27,8 +30,6 @@ services:
     hostname: home
     restart: unless-stopped
     tty: true
-    depends_on:
-      - gateway
     volumes:
       - type: bind
         source: "../Services/easyiot_home_service/src"
@@ -45,8 +46,6 @@ services:
     hostname: auth_ui
     restart: unless-stopped
     tty: true
-    depends_on:
-      - gateway
     volumes:
       - type: bind
         source: "../Services/easyiot_auth_ui_service/src"
@@ -63,8 +62,6 @@ services:
     hostname: auth_api
     restart: unless-stopped
     tty: true
-    depends_on:
-      - gateway
     volumes:
       - type: bind
         source: "../Services/easyiot_auth_api_service/src"
