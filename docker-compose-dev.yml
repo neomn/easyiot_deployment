@@ -1,3 +1,4 @@
+---
 networks:
   easyiot:
 
@@ -35,47 +36,39 @@ services:
     networks:
       - easyiot
 
-    auth_ui:
-      build:
-        context: ../Services/easyiot_auth_ui_service
-        dockerfile: Dockerfile
-      image: auth_ui
-      container_name: auth_uic
-      hostname: auth_ui
-      restart: unless-stopped
-      tty: true
-      depends_on:
-        - gateway
-      volumes:
-        - type: bind
-          source: "../services/easyiot_auth_ui_service/src"
-          target: /app 
-      networks:
-        - easyiot
+  auth_ui:
+    build:
+      context: ../Services/easyiot_auth_ui_service
+      dockerfile: Dockerfile
+    image: auth_ui
+    container_name: auth_uic
+    hostname: auth_ui
+    restart: unless-stopped
+    tty: true
+    depends_on:
+      - gateway
+    volumes:
+      - type: bind
+        source: "../Services/easyiot_auth_ui_service/src"
+        target: /app 
+    networks:
+      - easyiot
 
-    auth_api:
-      build:
-        context: ../Services/easyiot_auth_api_service
-        dockerfile: Dockerfile
-      image: auth_api
-      container_name: auth_apic
-      hostname: auth_api
-      restart: unless-stopped
-      tty: true
-      depends_on:
-        - gateway
-      volumes:
-        - type: bind
-          source: "../services/easyiot_auth_api_service/src"
-          target: /app      networks:
-      networks:
-        - easyiot
+  auth_api:
+    build:
+      context: ../Services/easyiot_auth_api_service
+      dockerfile: Dockerfile
+    image: auth_api
+    container_name: auth_apic
+    hostname: auth_api
+    restart: unless-stopped
+    tty: true
+    depends_on:
+      - gateway
+    volumes:
+      - type: bind
+        source: "../Services/easyiot_auth_api_service/src"
+        target: /app  
+    networks:
+      - easyiot
 
-#   
-#    sensor:
-#        image:              easyiot_sensor_image
-#        container_name:     easyiot_sensor_container
-#        restart:            unless-stopped
-#        tty:                true
-#        depends_on:
-#            - gateway

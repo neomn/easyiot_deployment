@@ -1,23 +1,27 @@
-
 networks:
   easyiot:
 
-        
+
 services:
   gateway:
-    image:              easyiot_gateway_image
-    container_name :    easyiot_gateway_container
-    restart:            unless-stopped
-    tty:                true
+    build:
+      context: ../Services/easyiot_gateway_service
+      dockerfile: Dockerfile
+    container_name: gatec
+    hostname: gate
+    restart: unless-stopped
+    tty: true
     ports:
       - 80:80
     networks:
       - easyiot
 
-
   home:
-    image: easyiot_home_image
-    container_name: easyiot_home_container
+    build:
+      context: ../Services/easyiot_home_service
+      dockerfile: Dockerfile
+    container_name: homec
+    hostname: home
     restart: unless-stopped
     tty: true
     depends_on:
@@ -29,26 +33,39 @@ services:
     networks:
       - easyiot
 
+    auth_ui:
+      build:
+        context: ../Services/easyiot_auth_ui_service
+        dockerfile: Dockerfile
+      container_name: auth_uic
+      hostname: auth_ui
+      restart: unless-stopped
+      tty: true
+      depends_on:
+        - gateway
+      volumes:
+        - type: bind
+          source: "../services/easyiot_auth_ui_service/src"
+          target: /app 
+      networks:
+        - easyiot
 
-#    auth_ui:
-#        image:              easyiot_auth_ui_image
-#        container_name :    easyiot_auth_ui_container
-#        restart:            unless-stopped
-#        tty:                true
-#        depends_on:
-#            - gateway
-#        networks:
-#            - easyiot
-
-#   auth_api:
-#       image:              easyiot_auth_api_image
-#       container_name :    easyiot_auth_api_container
-#       restart:            unless-stopped
-#       tty:                true
-#       depends_on:
-#           - gateway
-#       networks:
-#            - easyiot
+    auth_api:
+      build:
+        context: ../Services/easyiot_auth_api_service
+        dockerfile: Dockerfile
+      container_name: auth_apic
+      hostname: auth_api
+      restart: unless-stopped
+      tty: true
+      depends_on:
+        - gateway
+      volumes:
+        - type: bind
+          source: "../services/easyiot_auth_api_service/src"
+          target: /app      networks:
+      networks:
+        - easyiot
 
 #   
 #    sensor:
@@ -58,5 +75,3 @@ services:
 #        tty:                true
 #        depends_on:
 #            - gateway
-    
-    
