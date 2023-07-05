@@ -4,6 +4,19 @@ networks:
 
 
 services:
+
+  broker:
+    build:
+      context: ../Services/easyiot_broker_service
+      dockerfile: Dockerfile
+    image: broker
+    container_name: brokerc
+    hostname: broker
+    restart: unless-stopped
+    tty: true
+    networks:
+      - easyiot
+
   gateway:
     build:
       context: ../Services/easyiot_gateway_service
