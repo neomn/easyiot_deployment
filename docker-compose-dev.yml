@@ -7,7 +7,7 @@ services:
 
   frontend_broker:
     build:
-      context: ../Services/easyiot_broker_service
+      context: ../Services/easyiot_frontend_broker_service
       dockerfile: Dockerfile
     image: frontend_broker
     container_name: frontend_brokerc
