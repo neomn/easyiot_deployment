@@ -19,7 +19,7 @@ services:
 
   backend_broker:
     build:
-      context: ../Services/easyiot_broker_service
+      context: ../Services/easyiot_backend_broker_service
       dockerfile: Dockerfile
     image: backend_broker
     container_name: backend_brokerc
