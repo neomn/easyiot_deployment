@@ -29,7 +29,7 @@ services:
     networks:
       - easyiot
 
-  gateway:
+  frontend_gateway:
     build:
       context: ../Services/easyiot_gateway_service
       dockerfile: Dockerfile
