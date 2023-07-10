@@ -5,7 +5,7 @@ networks:
 
 services:
 
-  broker:
+  backend_broker:
     build:
       context: ../Services/easyiot_broker_service
       dockerfile: Dockerfile
