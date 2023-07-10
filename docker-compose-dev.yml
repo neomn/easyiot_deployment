@@ -50,9 +50,9 @@ services:
     build:
       context: ../Services/easyiot_gateway_service
       dockerfile: Dockerfile
-    image: gateway
-    container_name: gatec
-    hostname: gate
+    image: backend_gateway
+    container_name: backend_gatec
+    hostname: backend_gate
     restart: unless-stopped
     tty: true
     ports:
