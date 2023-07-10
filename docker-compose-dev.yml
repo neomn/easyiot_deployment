@@ -9,7 +9,7 @@ services:
     build:
       context: ../Services/easyiot_broker_service
       dockerfile: Dockerfile
-    image: broker
+    image: frontend_broker
     container_name: frontend_brokerc
     hostname: frontend_broker
     restart: unless-stopped
@@ -21,7 +21,7 @@ services:
     build:
       context: ../Services/easyiot_broker_service
       dockerfile: Dockerfile
-    image: broker
+    image: backend_broker
     container_name: backend_brokerc
     hostname: backend_broker
     restart: unless-stopped
@@ -33,9 +33,9 @@ services:
     build:
       context: ../Services/easyiot_gateway_service
       dockerfile: Dockerfile
-    image: gateway
-    container_name: gatec
-    hostname: gate
+    image: frontend_gateway
+    container_name: frontend_gatec
+    hostname: frontend_gate
     restart: unless-stopped
     tty: true
     ports:
