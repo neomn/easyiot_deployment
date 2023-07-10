@@ -31,7 +31,7 @@ services:
 
   frontend_gateway:
     build:
-      context: ../Services/easyiot_gateway_service
+      context: ../Services/easyiot_frontend_gateway_service
       dockerfile: Dockerfile
     image: frontend_gateway
     container_name: frontend_gatec
