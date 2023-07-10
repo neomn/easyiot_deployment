@@ -10,8 +10,8 @@ services:
       context: ../Services/easyiot_broker_service
       dockerfile: Dockerfile
     image: broker
-    container_name: brokerc
-    hostname: broker
+    container_name: frontend_brokerc
+    hostname: frontend_broker
     restart: unless-stopped
     tty: true
     networks:
