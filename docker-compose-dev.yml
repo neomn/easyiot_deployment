@@ -5,6 +5,18 @@ networks:
 
 services:
 
+  frontend_broker:
+    build:
+      context: ../Services/easyiot_broker_service
+      dockerfile: Dockerfile
+    image: broker
+    container_name: brokerc
+    hostname: broker
+    restart: unless-stopped
+    tty: true
+    networks:
+      - easyiot
+
   backend_broker:
     build:
       context: ../Services/easyiot_broker_service
