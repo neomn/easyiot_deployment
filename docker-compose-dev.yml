@@ -45,6 +45,23 @@ services:
       - auth_ui
     networks:
       - easyiot
+        
+  backend_gateway:
+    build:
+      context: ../Services/easyiot_gateway_service
+      dockerfile: Dockerfile
+    image: gateway
+    container_name: gatec
+    hostname: gate
+    restart: unless-stopped
+    tty: true
+    ports:
+      - 80:80
+    depends_on: 
+      - home
+      - auth_ui
+    networks:
+      - easyiot
 
   home:
     build:
