@@ -7,66 +7,66 @@ services:
 
   ########################### frontend services ##################
 
-  frontend_broker:
-    build:
-      context: ../Services/easyiot_frontend_broker_service
-      dockerfile: Dockerfile
-    image: frontend_broker
-    container_name: frontend_brokerc
-    hostname: frontend_broker
-    restart: unless-stopped
-    tty: true
-    networks:
-      - easyiot
-
-  frontend_gateway:
-    build:
-      context: ../Services/easyiot_frontend_gateway_service
-      dockerfile: Dockerfile
-    image: frontend_gateway
-    container_name: frontend_gatec
-    hostname: frontend_gate
-    restart: unless-stopped
-    tty: true
-    ports:
-      - 80:80
-    depends_on:
-      - home
-      - auth_ui
-    networks:
-      - easyiot
-
-  home:
-    build:
-      context: ../Services/easyiot_home_service
-      dockerfile: Dockerfile
-    image: home
-    container_name: homec
-    hostname: home
-    restart: unless-stopped
-    tty: true
-    volumes:
-      - type: bind
-        source: "../Services/easyiot_home_service/src"
-        target: /app
-    networks:
-      - easyiot
-
-  auth_ui:
-    build:
-      context: ../Services/easyiot_auth_ui_service
-      dockerfile: Dockerfile
-    image: auth_ui
-    container_name: auth_uic
-    hostname: auth_ui
-    restart: unless-stopped
-    tty: true
-    volumes:
-      - type: bind
-        source: "../Services/easyiot_auth_ui_service/src"
-        target: /app
-    networks:
-      - easyiot
+# frontend_broker:
+#   build:
+#     context: ../Services/easyiot_frontend_broker_service
+#     dockerfile: Dockerfile
+#   image: frontend_broker
+#   container_name: frontend_brokerc
+#   hostname: frontend_broker
+#   restart: unless-stopped
+#   tty: true
+#   networks:
+#     - easyiot
+#
+# frontend_gateway:
+#   build:
+#     context: ../Services/easyiot_frontend_gateway_service
+#     dockerfile: Dockerfile
+#   image: frontend_gateway
+#   container_name: frontend_gatec
+#   hostname: frontend_gate
+#   restart: unless-stopped
+#   tty: true
+#   ports:
+#     - 80:80
+#   depends_on:
+#     - home
+#     - auth_ui
+#   networks:
+#     - easyiot
+#
+# home:
+#   build:
+#     context: ../Services/easyiot_home_service
+#     dockerfile: Dockerfile
+#   image: home
+#   container_name: homec
+#   hostname: home
+#   restart: unless-stopped
+#   tty: true
+#   volumes:
+#     - type: bind
+#       source: "../Services/easyiot_home_service/src"
+#       target: /app
+#   networks:
+#     - easyiot
+#
+# auth_ui:
+#   build:
+#     context: ../Services/easyiot_auth_ui_service
+#     dockerfile: Dockerfile
+#   image: auth_ui
+#   container_name: auth_uic
+#   hostname: auth_ui
+#   restart: unless-stopped
+#   tty: true
+#   volumes:
+#     - type: bind
+#       source: "../Services/easyiot_auth_ui_service/src"
+#       target: /app
+#   networks:
+#      - easyiot
 
   ########################## backend services  #####################
 
@@ -114,3 +114,6 @@ services:
         target: /app
     networks:
       - easyiot
+
+
+
