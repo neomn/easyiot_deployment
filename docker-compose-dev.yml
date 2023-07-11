@@ -94,8 +94,7 @@ services:
     ports:
       - 80:80
     depends_on:
-      - home
-      - auth_ui
+      - backend_broker 
     networks:
       - easyiot
 
@@ -112,6 +111,9 @@ services:
       - type: bind
         source: "../Services/easyiot_auth_api_service/src"
         target: /app
+    depends_on: 
+      - backend_broker
+      - backend_gateway  
     networks:
       - easyiot
 
@@ -128,6 +130,9 @@ services:
       - type: bind
         source: "../Services/easyiot_sensor_service/src"
         target: /app
+    depends_on: 
+      - backend_broker
+      - backend_gateway 
     networks:
       - easyiot
 
