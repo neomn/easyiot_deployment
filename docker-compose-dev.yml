@@ -5,8 +5,7 @@ networks:
 
 services:
 
-
-########################### frontend services ##################
+  ########################### frontend services ##################
 
   frontend_broker:
     build:
@@ -20,7 +19,6 @@ services:
     networks:
       - easyiot
 
-
   frontend_gateway:
     build:
       context: ../Services/easyiot_frontend_gateway_service
@@ -32,7 +30,7 @@ services:
     tty: true
     ports:
       - 80:80
-    depends_on: 
+    depends_on:
       - home
       - auth_ui
     networks:
@@ -66,12 +64,11 @@ services:
     volumes:
       - type: bind
         source: "../Services/easyiot_auth_ui_service/src"
-        target: /app 
+        target: /app
     networks:
       - easyiot
 
-
-########################## backend services  #####################
+  ########################## backend services  #####################
 
   backend_broker:
     build:
@@ -84,7 +81,7 @@ services:
     tty: true
     networks:
       - easyiot
-        
+
   backend_gateway:
     build:
       context: ../Services/easyiot_backend_gateway_service
@@ -96,7 +93,7 @@ services:
     tty: true
     ports:
       - 80:80
-    depends_on: 
+    depends_on:
       - home
       - auth_ui
     networks:
@@ -114,7 +111,6 @@ services:
     volumes:
       - type: bind
         source: "../Services/easyiot_auth_api_service/src"
-        target: /app  
+        target: /app
     networks:
       - easyiot
-
