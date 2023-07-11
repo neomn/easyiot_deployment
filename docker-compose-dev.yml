@@ -115,5 +115,21 @@ services:
     networks:
       - easyiot
 
+  sensor:
+    build:
+      context: ../Services/easyiot_sensor_service
+      dockerfile: Dockerfile
+    image: sensor
+    container_name: sensorc
+    hostname: sensor
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - type: bind
+        source: "../Services/easyiot_sensor_service/src"
+        target: /app
+    networks:
+      - easyiot
+
 
 
