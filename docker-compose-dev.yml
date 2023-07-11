@@ -5,6 +5,9 @@ networks:
 
 services:
 
+
+########################### frontend services ##################
+
   frontend_broker:
     build:
       context: ../Services/easyiot_frontend_broker_service
@@ -17,17 +20,6 @@ services:
     networks:
       - easyiot
 
-  backend_broker:
-    build:
-      context: ../Services/easyiot_backend_broker_service
-      dockerfile: Dockerfile
-    image: backend_broker
-    container_name: backend_brokerc
-    hostname: backend_broker
-    restart: unless-stopped
-    tty: true
-    networks:
-      - easyiot
 
   frontend_gateway:
     build:
@@ -36,23 +28,6 @@ services:
     image: frontend_gateway
     container_name: frontend_gatec
     hostname: frontend_gate
-    restart: unless-stopped
-    tty: true
-    ports:
-      - 80:80
-    depends_on: 
-      - home
-      - auth_ui
-    networks:
-      - easyiot
-        
-  backend_gateway:
-    build:
-      context: ../Services/easyiot_backend_gateway_service
-      dockerfile: Dockerfile
-    image: backend_gateway
-    container_name: backend_gatec
-    hostname: backend_gate
     restart: unless-stopped
     tty: true
     ports:
@@ -92,6 +67,38 @@ services:
       - type: bind
         source: "../Services/easyiot_auth_ui_service/src"
         target: /app 
+    networks:
+      - easyiot
+
+
+########################## backend services  #####################
+
+  backend_broker:
+    build:
+      context: ../Services/easyiot_backend_broker_service
+      dockerfile: Dockerfile
+    image: backend_broker
+    container_name: backend_brokerc
+    hostname: backend_broker
+    restart: unless-stopped
+    tty: true
+    networks:
+      - easyiot
+        
+  backend_gateway:
+    build:
+      context: ../Services/easyiot_backend_gateway_service
+      dockerfile: Dockerfile
+    image: backend_gateway
+    container_name: backend_gatec
+    hostname: backend_gate
+    restart: unless-stopped
+    tty: true
+    ports:
+      - 80:80
+    depends_on: 
+      - home
+      - auth_ui
     networks:
       - easyiot
 
